@@ -1,0 +1,25 @@
+Code:
+
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+
+        while head:
+            if head.next and head.val == head.next.val:
+                value = head.val
+
+                while head and head.val == value:
+                    head = head.next
+
+                prev.next = head
+            else:
+                prev = head
+                head = head.next
+
+        return dummy.next
+
+Explanation: 
+
+Use a dummy node and two pointers (prev and head). If consecutive nodes have the same value, skip all nodes with that value. Otherwise, move forward and keep the distinct node.
